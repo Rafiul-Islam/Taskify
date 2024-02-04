@@ -75,3 +75,29 @@ main {
 .form__submit-button:active {
     transform: scale(.87);
 }
+
+.todos__container {
+    list-style: none;
+    padding-left: 0;
+}
+
+.todo-item {
+    width: 100%;
+    background: #eee;
+    box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.todo-task{
+    margin-right: 15px;
+}
+
+[role='button'] {
+    cursor: pointer;
+    margin: 0 8px;
+}

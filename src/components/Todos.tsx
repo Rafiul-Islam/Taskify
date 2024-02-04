@@ -6,8 +6,17 @@ interface PropsType {
 
 const Todos = ({todos}: PropsType) => {
     return (
-        <ul>
-            {todos.map(({id, todo}) => <li key={id}>{todo}</li>)}
+        <ul className='todos__container'>
+            {todos.map(({id, todo}) =>
+                <li className='todo-item' key={id}>
+                    <span className='todo-task'> {todo} </span>
+                    <div>
+                        <i role='button' className='fa fa-pencil'></i>
+                        <i role='button' className='fa fa-trash'></i>
+                        <i role='button' className='fa fa-check'></i>
+                    </div>
+                </li>
+            )}
         </ul>
     );
 };
