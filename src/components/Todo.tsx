@@ -1,5 +1,5 @@
 import TodoModal from "../model/todo.ts";
-import React, {FormEvent, useState} from "react";
+import React, {FormEvent, useRef, useState} from "react";
 
 interface PropsType {
     todo: TodoModal,
@@ -10,6 +10,8 @@ interface PropsType {
 const Todo = ({todo, todos, setTodos}: PropsType) => {
     const {id, todo: todoTask, isCompleted} = todo;
     const [isEditable, setIsEditable] = useState<boolean>(false)
+    const [updatedTodo, setUpdatedTodo] = useState<string>(todoTask);
+    const todoRef = useRef(null);
     const handleComplete = (todoId: string) => {
         const updatedTodos = todos.map(todo => {
             if (todo.id === todoId) {
@@ -23,21 +25,30 @@ const Todo = ({todo, todos, setTodos}: PropsType) => {
         const updatedTodos = todos.filter(todo => todo.id !== todoId);
         setTodos(updatedTodos);
     }
-    const handleEdit = (todoId: string) => {
-        console.log(todoId);
-        setIsEditable(true);
+    const handleEdit = () => {
+        if (!isEditable && !isCompleted) {
+            setIsEditable(true);
+        }
     }
-
-    const handleSubmit = (e: FormEvent) => {
-        e.preventDefault();
+    const handleSave = () => {
+        const updatedTodos = todos.map(todo => {
+            if (todo.id === id) {
+                todo.todo = updatedTodo;
+            }
+            return todo;
+        });
+        setTodos(updatedTodos);
         setIsEditable(false);
     }
+
     return (
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form>
             <li className='todo-item'>
-                <p contentEditable={isEditable} className={`todo-task ${isCompleted && 'completed'}`}> {todoTask} </p>
+                {isEditable && <input value={updatedTodo} onChange={e=> setUpdatedTodo(e.target.value)} className='update-todo-input' ref={todoRef} type="text"/>}
+                {!isEditable && <p className={`todo-task ${isCompleted ? 'completed' : ''}`}> {todoTask} </p>}
                 <div className='button-container'>
-                    <i role='button' className='fa fa-pencil' onClick={() => handleEdit(id)}></i>
+                    {isEditable && <i role='button' className='fa fa-save' onClick={handleSave}></i>}
+                    {!isEditable && <i role='button' className='fa fa-pencil' onClick={handleEdit}></i>}
                     <i role='button' className='fa fa-trash' onClick={() => handleDelete(id)}></i>
                     <i role='button' className='fa fa-check' onClick={() => handleComplete(id)}></i>
                 </div>
