@@ -85,19 +85,38 @@ main {
     width: 100%;
     background: #eee;
     box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
-    padding: 20px;
+    padding: 15px;
     margin-bottom: 10px;
     border-radius: 6px;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
 }
 
 .todo-task{
-    margin-right: 15px;
+    width: 100%;
+    margin: 0 15px 0 0;
+    font-weight: 600;
+    padding: 5px 10px;
+}
+
+.button-container{
+    display: flex;
 }
 
 [role='button'] {
     cursor: pointer;
-    margin: 0 8px;
+    margin: 0 9px;
+}
+
+[role='button'].fa-pencil {
+    color: teal;
+}
+
+[role='button'].fa-trash {
+    color: crimson;
+}
+
+[role='button'].fa-check {
+    color: blue;
 }

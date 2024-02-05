@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import uniqid from 'uniqid';
 import InputField from "./components/InputField.tsx";
 import Todo from "./model/todo.ts";
-import Todos from "./components/Todos.tsx";
+import TodoList from "./components/TodoList.tsx";
 
 const App: React.FC = () => {
     const [todo, setTodo] = useState<string>("");
@@ -30,7 +30,7 @@ const App: React.FC = () => {
                     setTodo={setTodo}
                     todoAddHandler={handleTodoAdd}
                 />
-                <Todos todos={todos}/>
+                <TodoList todos={todos} setTodos={setTodos}/>
             </div>
         </main>
     );
