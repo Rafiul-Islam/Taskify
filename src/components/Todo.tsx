@@ -1,5 +1,5 @@
 import TodoModal from "../model/todo.ts";
-import React, {FormEvent, useRef, useState} from "react";
+import React, {FormEvent, useEffect, useRef, useState} from "react";
 
 interface PropsType {
     todo: TodoModal,
@@ -28,6 +28,7 @@ const Todo = ({todo, todos, setTodos}: PropsType) => {
     const handleEdit = () => {
         if (!isEditable && !isCompleted) {
             setIsEditable(true);
+
         }
     }
     const handleSave = () => {
@@ -40,6 +41,10 @@ const Todo = ({todo, todos, setTodos}: PropsType) => {
         setTodos(updatedTodos);
         setIsEditable(false);
     }
+
+    useEffect(() => {
+        todoRef.current?.focus();
+    }, [isEditable]);
 
     return (
         <form>
