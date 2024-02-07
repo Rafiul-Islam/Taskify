@@ -66,8 +66,28 @@ body {
     transform: scale(.87);
 }
 
-.todos__container {
-    margin-top: 30px;
+.todos__container{
+    padding: 20px;
+    border-radius: 6px;
+}
+
+.todos__container h3{
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.active-todos{
+    background: darkgoldenrod;
+
+}
+
+.completed-todos{
+    background: darkgreen;
+}
+
+.todo__list {
     list-style: none;
     padding-left: 0;
 }
@@ -83,6 +103,11 @@ body {
     align-items: flex-start;
     justify-content: space-between;
     text-align: justify;
+    transition: .3s ease;
+}
+
+.todo-item:hover{
+    transform: scale(1.04);
 }
 
 .todo-task{
