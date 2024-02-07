@@ -1,5 +1,5 @@
 import TodoModal from "../model/todo.ts";
-import React, {FormEvent, useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 
 interface PropsType {
     todo: TodoModal,

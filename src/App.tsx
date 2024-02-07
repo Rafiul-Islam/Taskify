@@ -10,7 +10,7 @@ const App: React.FC = () => {
 
     const handleTodoAdd = (e: React.FormEvent) => {
         e.preventDefault();
-        if (todo){
+        if (todo) {
             const todoObj: Todo = {
                 id: uniqid(),
                 todo: todo,
@@ -22,16 +22,14 @@ const App: React.FC = () => {
     }
 
     return (
-        <main>
-            <div>
-                <h1 className='heading'>Taskify</h1>
-                <InputField
-                    todo={todo}
-                    setTodo={setTodo}
-                    todoAddHandler={handleTodoAdd}
-                />
-                <TodoList todos={todos} setTodos={setTodos}/>
-            </div>
+        <main className='container mt-5'>
+            <h1 className='heading'>Taskify</h1>
+            <InputField
+                todo={todo}
+                setTodo={setTodo}
+                todoAddHandler={handleTodoAdd}
+            />
+            <TodoList todos={todos} setTodos={setTodos}/>
         </main>
     );
 };
