@@ -33,16 +33,20 @@ const App: React.FC = () => {
         const updatedTodos = [...todos];
         const updatedCompletedTodos = [...completedTodos];
 
-        if (source.droppableId === "ActiveTodoList" && destination.droppableId === "CompletedTodoList") {
+        if (source.droppableId === "ActiveTodoList") {
             newAddition = updatedTodos[source.index];
-            newAddition.isCompleted = !newAddition.isCompleted;
-            updatedCompletedTodos.splice(destination.index, 0, newAddition);
             updatedTodos.splice(source.index, 1);
-        } else if (source.droppableId === "CompletedTodoList" && destination.droppableId === "ActiveTodoList") {
+        } else {
             newAddition = updatedCompletedTodos[source.index];
-            newAddition.isCompleted = !newAddition.isCompleted;
             updatedCompletedTodos.splice(source.index, 1);
+        }
+
+        if (destination.droppableId === "ActiveTodoList") {
+            newAddition.isCompleted = false;
             updatedTodos.splice(destination.index, 0, newAddition);
+        } else {
+            newAddition.isCompleted = true;
+            updatedCompletedTodos.splice(destination.index, 0, newAddition);
         }
         setTodos(updatedTodos);
         setCompletedTodos(updatedCompletedTodos);
