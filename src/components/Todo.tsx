@@ -61,7 +61,7 @@ const Todo = ({index, todo, todos, setTodos}: PropsType) => {
                             {!isEditable && <p className={`todo-task ${isCompleted ? 'completed' : ''}`}> {todoTask} </p>}
                             <div className='button-container'>
                                 {isEditable && <i role='button' className='fa fa-save' onClick={handleSave}></i>}
-                                {!isEditable && <i role='button' className='fa fa-pencil' onClick={handleEdit}></i>}
+                                {(!isEditable && !todo.isCompleted) && <i role='button' className='fa fa-pencil' onClick={handleEdit}></i>}
                                 <i role='button' className='fa fa-trash' onClick={() => handleDelete(id)}></i>
                                 <i role='button' className='fa fa-check' onClick={() => handleComplete(id)}></i>
                             </div>
